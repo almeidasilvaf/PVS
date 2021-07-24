@@ -1,0 +1,443 @@
+---
+title: "Sociedade, ambiente e saúde"
+author: "Fabrício de Almeida Silva"
+institute: "PVS - Fundação CECIERJ"
+date: "24 de julho de 2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["default", "assets/venanciolab-fonts.css", "assets/venanciolab.css"]
+    self_contained: false
+    seal: true
+    nature:
+      ratio: "16:9"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "https://platform.twitter.com/widgets.js"
+      navigation:
+        scroll: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE, warning = FALSE, message = FALSE,
+  fig.width = 7, fig.height = 2.5, 
+  fig.align='center', dpi = 300
+)
+options(htmltools.dir.version = TRUE)
+```
+
+```{r xaringan-tile-view, echo=FALSE}
+xaringanExtra::use_tile_view()
+```
+
+```{r xaringan-scribble, echo=FALSE}
+xaringanExtra::use_scribble()
+```
+
+```{r xaringan-panelset, echo=FALSE}
+xaringanExtra::use_panelset()
+```
+
+background-image: url(https://nova-escola-producao.s3.amazonaws.com/u6f3uRaatyPnX85XJRNcrXuukTmFfPgR4QKaM5Qw3shZKNsFYBsxPa5rrT6f/mao-na-massa)
+background-size: contain
+
+## Efeito estufa
+
+---
+
+background-image: url(figs/aulas_05_06/co2_atm.png)
+background-size: 70%
+background-position: 50% 70%
+
+## Mudanças climáticas e impacto antrópico
+
+---
+
+background-image: url(figs/aulas_05_06/gases.png)
+background-size: 60%
+background-position: 50% 70%
+
+## Mudanças climáticas e impacto antrópico
+
+---
+
+## A temperatura média global está aumentando?
+
+<br />
+
+```{r out.width='100%'}
+library(tidyverse)
+library(ggsci)
+library(countrycode)
+
+temp <- read.table("https://raw.githubusercontent.com/Gianatmaja/Global-Warming-Dashboard/master/AverageGlobalTemp.txt", sep = "", skip = 69)[, 1:3]
+names(temp) <- c("Year", "Month", "Anomaly")
+temp_year <- temp %>% group_by(Year) %>% summarise(Avg = mean(Anomaly))
+temp_year$Avg <- temp_year$Avg + 8.7
+
+# Plot data
+ggplot(data = temp_year, aes(x = Year, y = Avg, group=1)) + 
+  geom_point(color = "#3B4992FF") + 
+  geom_line(col = "#3B4992FF") + 
+  geom_smooth(color="brown3") +
+  theme_bw() +
+  labs(x = "Anos", y = "Temperatura média", 
+       title = "Temperatura média global ao longo do tempo") +
+  geom_vline(xintercept = 1760)
+```
+
+---
+
+## E a emissão de gases do efeito estufa?
+
+```{r out.width='100%'}
+CO2.Emi <- read.csv("https://raw.githubusercontent.com/Gianatmaja/Global-Warming-Dashboard/master/CO2_Emissions.csv", header = T, check.names = F)
+CO2.Emi.2 = CO2.Emi[,c(1,111:265)]
+
+#Find region
+CO2.Emi.2$continent <- countrycode(sourcevar = CO2.Emi.2[,"country"], origin = "country.name", destination = "continent")
+
+#Cleaning
+CO2.Emi.2 <- CO2.Emi.2[,c(1,157,2:156)]
+
+CO2.Emi.tidy = CO2.Emi.2 %>%
+  gather(year, emission, '1860':'2014')
+
+CO2.Emi.tidy[is.na(CO2.Emi.tidy)] = 0
+CO2.Emi.continent = CO2.Emi.tidy %>%  group_by(year, continent) %>% summarise(total = sum(emission))
+
+#Plotting
+P3 <- ggplot(data = CO2.Emi.continent, 
+            aes(x = year, y = total, fill = continent, group = continent)) + 
+  geom_area() + 
+  scale_x_discrete(breaks = seq(1860,2010,20)) +
+  theme_bw() + 
+  labs(x="Tempo", y="Emissão de CO2", fill = "Continente",
+       title ="Emissão total de CO2 ao longo do tempo") +
+  scale_fill_npg()
+P3
+```
+
+---
+
+## E a emissão de gases do efeito estufa?
+
+<br />
+
+```{r out.width='100%'}
+Methane.Emi <- read.csv("https://raw.githubusercontent.com/Gianatmaja/Global-Warming-Dashboard/master/Methane_Emissions.csv",skip = 4, header = T, check.names = F)
+Methane.Emi$continent = countrycode(sourcevar = Methane.Emi[,"Country Name"], origin = "country.name", destination = "continent")
+NO_Emi <- read.csv("https://raw.githubusercontent.com/Gianatmaja/Global-Warming-Dashboard/master/NO_Emissions.csv", skip = 4, header = T, check.names = F)
+
+
+Methane.Emi$continent = countrycode(sourcevar = Methane.Emi[,"Country Name"], origin = "country.name", destination = "continent")
+
+#Cleaning for methane dataset
+Methane.Emi = Methane.Emi[,c(1,66,2:65)]
+
+Index = which(is.na(Methane.Emi$continent) == T)
+Methane.Emi = Methane.Emi[-Index,]
+
+Methane.Emi.tidy = Methane.Emi %>%
+  gather(year, emission, '1960':'2019')
+Methane.Emi.tidy = Methane.Emi.tidy[,c(1,2,7,8)]
+
+Methane.Emi.tidy[is.na(Methane.Emi.tidy)] = 0
+
+Methane.Emi.tidy = Methane.Emi.tidy %>% group_by(year) %>% summarise(emission = sum(emission))
+Methane.Emi.tidy = Methane.Emi.tidy[11:53,]
+
+#Cleaning for NO dataset
+NO_Emi$continent = countrycode(sourcevar = NO_Emi[,"Country Name"], origin = "country.name", destination = "continent")
+NO_Emi = NO_Emi[,c(1,66,2:65)]
+
+Index2 = which(is.na(NO_Emi$continent) == T)
+NO_Emi = NO_Emi[-Index2,]
+
+NO_Emi.tidy = NO_Emi %>%
+  gather(year, emission, '1960':'2019')
+NO_Emi.tidy = NO_Emi.tidy[,c(1,2,7,8)]
+
+NO_Emi.tidy[is.na(NO_Emi.tidy)] = 0
+
+NO_Emi.tidy = NO_Emi.tidy %>% group_by(year) %>% summarise(emission = sum(emission))
+NO_Emi.tidy = NO_Emi.tidy[11:53,]
+
+#Joning data
+A = Methane.Emi.tidy$emission
+B = NO_Emi.tidy$emission
+
+X = rep(1970:2012,each = 2)
+Y = vector("numeric", 86)
+Z = rep(c("Methane","NO"), 43)
+
+for (i in 1:86){
+  if(i %% 2 == 0){
+    a = i/2
+    Y[i] = B[a]
+  }else{
+    a = (i+1)/2
+    Y[i] = A[a]
+  }
+}
+
+NO_CH4_Year = cbind(X,Y,Z)
+NO_CH4_Year = data.frame(NO_CH4_Year)
+names(NO_CH4_Year) = c("Year","Emission","Gas")
+
+#Plotting
+NO_CH4_Year$Gas <- gsub("Methane", "CH4", NO_CH4_Year$Gas)
+P4 <- ggplot(data = NO_CH4_Year) + 
+  geom_line(aes(x = Year, y = Emission, col = Gas, group = Gas)) +
+  scale_x_discrete(breaks = seq(1970,2010,10)) + 
+  scale_y_discrete(breaks = seq(2000000,8000000,2000000)) + 
+  labs(x = "Tempo", y="Emissão total", 
+       title = "Emissão de CH4 e NO ao longo do tempo") +
+  theme_bw()
+P4
+```
+
+---
+
+## Nível dos oceanos
+
+```{r out.width="100%"}
+Sea_Level <- read.csv("https://raw.githubusercontent.com/Gianatmaja/Global-Warming-Dashboard/master/Sea_level_GMSL.csv", header = T, check.names = F)
+Month <- rep(1:12,23)
+Month <- Month[1:266]
+Year <- rep(1993:2015,each=12)
+Year <- Year[1:266]
+Mean_Sea_Level <- data.frame(cbind(Year, Month, Sea_Level$GMSL))
+names(Mean_Sea_Level) <- c("Year", "Month", "GMSL")
+Mean_Sea_Level <- Mean_Sea_Level %>% group_by(Year) %>% summarise(Change = last(GMSL))
+Rise <- Mean_Sea_Level$Change - Mean_Sea_Level$Change[c(1,1:22)]
+Mean_Sea_Level <- data.frame(cbind(Mean_Sea_Level$Year, Mean_Sea_Level$Change, Rise))
+Mean_Sea_Level$Rise[1] <- NA
+names(Mean_Sea_Level) <- c("Year", "Cumulative_change", "One_year_rise")
+P2 <- ggplot(data = Mean_Sea_Level) + 
+  geom_bar(aes(x = Year, y = Cumulative_change), 
+           stat = "identity", fill = "steelblue2") +
+  geom_line(aes(x = Year, y = Cumulative_change), col = "royalblue4") +
+  geom_point(aes(x = Year, y = Cumulative_change, 
+                 One_year_rise = One_year_rise)) + xlab("") + 
+  labs(x = "Tempo", y = "Mudança",
+       title = "Nível do mar ao longo do tempo") + 
+  theme_bw()
+P2
+```
+
+---
+
+background-image: url(https://conhecimentocientifico.r7.com/wp-content/uploads/2019/03/saiba-o-que-e-a-chuva-acida-como-ela-ocorre-e-as-maneiras-preveni-la.jpg)
+background-size: 75%
+background-position: 50% 80%
+
+## Impactos ambientais - chuva ácida
+
+---
+
+background-image: url(https://ianalitica.wordpress.com/files/2009/10/foto_des_chuva.jpg)
+background-size: 60%
+background-position: 50% 80%
+
+## Impactos ambientais - chuva ácida
+
+---
+
+background-image: url(https://static.wixstatic.com/media/139c75_e50f2cf8eb0f49498573e882255890d1~mv2.png/v1/fit/w_585%2Ch_325%2Cal_c/file.png)
+background-size: 75%
+background-position: 50% 80%
+
+## Impactos ambientais - acidificação dos oceanos
+
+---
+
+background-image: url(https://static.wixstatic.com/media/63db52_6e3e77a3b9114db19e2901fd75a17eec~mv2_d_5500_2652_s_4_2.jpg/v1/fill/w_1000,h_482,al_c,q_90,usm_0.66_1.00_0.01/63db52_6e3e77a3b9114db19e2901fd75a17eec~mv2_d_5500_2652_s_4_2.jpg)
+background-size: 85%
+background-position: 50% 80%
+
+## Impactos ambientais - acidificação dos oceanos
+
+---
+
+## Conceitos em epidemiologia
+
+<br />
+
+- **Doenças negligenciadas:** conjunto de doenças causadas por agentes infecciososo e parasitários e que acometem populações pobres e marginalizadas de países em desenvolvimento. Exemplos: 
+
+  - Dengue, leishmaniose, doença de Chagas, febre amarela, malária, entre outras.
+
+- **Doenças emergentes:** doenças novas ou que só afetavam populações não-humanas, ou doenças que atingem regiões nunca afetadas anteriormente. Exemplos:
+  
+  - COVID-19, Zika virus, Ebola, SARS, MERS.
+  
+- **Doenças reemergentes:** doenças conhecidas e já controladas, mas que voltaram a apresenyar risco à população. Exemplos:
+
+  - Febre amarela, cólera (América Central), febre tifoide (África).
+
+---
+
+background-image: url(https://s4be.cochrane.org/app/uploads/2013/01/neglected-diseases.jpg)
+background-size: 85%
+background-position: 50% 80%
+
+## Mudanças climáticas e doenças tropicais
+
+---
+
+## Mudanças climáticas e doenças tropicais
+
+<br />
+
+O aumento da temperatura pode:
+
+1. Criar novos ambientes adequados à sobrevivência e reprodução de insetos vetores de doenças;
+2. Extinguir espécies endêmicas capazes de controlar a população de vetores (predação, competição ou parasitismo);
+3. Favorecer a reprodução dos patógenos e elevar suas taxas metabólicas.
+
+---
+
+## Protozoonoses
+
+.panelset.sideways[
+.panel[.panel-name[Doenca de Chagas]
+- **Agente etiológico:** *Trypanossoma cruzi* 
+- **Vetor:** inseto triatomíneo "barbeiro" - Fezes contaminadas no ato da picada.
+- **Sintomas:** febre, inchaço, inflação no músculo cardíaco.
+- **Profilaxia:** controle do inseto vetor.
+
+```{r out.width="70%"}
+knitr::include_graphics("https://www.revistacircuito.com/wp-content/uploads/2019/08/chagas-1.jpg")
+```
+]
+.panel[.panel-name[Leishmaniose]
+- **Agente etiológico:** *Leishmania braziliensis* / *Leishmania amazonensis*
+- **Vetor:** mosquito-palha.
+- **Sintomas:** lesões cutâneas, aumento do fígado e baço, complicações cardíacas.
+- **Profilaxia:** controle do inseto vetor.
+
+```{r out.width="70%"}
+knitr::include_graphics("https://syntec.com.br/wp-content/uploads/2019/10/Vetor-da-Leishmaniose-Syntec.jpg")
+```
+]
+.panel[.panel-name[Malária]
+- **Agente etiológico:** *Plasmodium sp.*
+- **Vetor:** mosquito do gênero Anopheles.
+- **Sintomas:** febre alta, dores de cabeça, calafrios.
+- **Profilaxia:** controle do vetor.
+
+```{r out.width="70%"}
+knitr::include_graphics("https://imagens.ebc.com.br/uCt2PLLfGCyeLfnXxFG9ZLRhJ_M=/1170x700/smart/https://agenciabrasil.ebc.com.br/sites/default/files/atoms/image/anopheles.portalbiologia.jpg?itok=Bfu8NQVx")
+```
+]
+.panel[.panel-name[Giardíase]
+- **Agente etiológico:** *Giardia lamblia*
+- **Transmissão:** água e alimentos contaminados.
+- **Sintomas:** diarreia e dores abdominais.
+- **Profilaxia:** saneamento básico e higiene.
+
+```{r}
+knitr::include_graphics("https://3.bp.blogspot.com/-TogwP2k5DKU/Vwpg7BTpTjI/AAAAAAAAAHc/pIVYGe_fSAYX3DiRqnHGK-yAyoNXanCbQ/s1600/protozoa4.jpg")
+```
+]
+.panel[.panel-name[Amebíase]
+- **Agente etiológico:** *Entamoeba histolytica*
+- **Transmissão:** água contaminada por fezes.
+- **Sintomas:** diarreia, vômito.
+- **Profilaxia:** saneamento básico.
+
+```{r}
+knitr::include_graphics("http://www.infoescola.com/wp-content/uploads/2007/02/entamoeba-histolytica.jpg")
+```
+]
+]
+
+---
+
+## Helmintoses
+
+.panelset.sideways[
+.panel[.panel-name[Helmintos]
+Podem ser:
+- **Platelmintos (filo Platyhelminthes):** vermes de corpo achatado.
+
+- **Nematelmintos ou nematoides (filo Nematoda):** vermes de corpo cilíndrico.
+
+<img src="https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/06/14/13/planaria-flatworm.jpg?width=982&height=726&auto=webp&quality=75" width="45%" /> &nbsp;
+<img src="https://4.bp.blogspot.com/-xqRE3mWvlXQ/UW4fNoaJDdI/AAAAAAAAA-M/TOBEiccGf04/s1600/filo+nematoda+fig1.jpg" width="49%" />
+]
+.panel[.panel-name[Teníase]
+- **Agente etiológico:** platelminto *Taenia solium* (porco) e *Taenia saginata* (boi)
+- **Transmissão:** ingestão de carne contaminada com verme
+- **Sintomas:** enjoo, diarreia, dores abdominais, perda de peso.
+- **Profilaxia:** saneamento básico, evitar ingerir carnes mal passadas.
+
+```{r out.width="60%"}
+knitr::include_graphics("https://static.mundoeducacao.uol.com.br/mundoeducacao/2021/04/tenia-no-intestino.jpg")
+```
+]
+.panel[.panel-name[Cisticercose]
+- **Transmissão:** água ou alimentos contaminados com larvas de *T. solium* (cisticercos).
+- **Sintomas:** dor muscular, problemas cardíacos, dor de cabeça, convulsões, lesões.
+- **Profilaxia:** saneamento básico, educação sanitária.
+
+```{r out.width="60%"}
+knitr::include_graphics("https://docplayer.com.br/docs-images/63/50514131/images/8-0.jpg")
+```
+]
+.panel[.panel-name[Esquistossomose]
+- **Agente etiológico:** platelminto *Schistosoma mansoni*.
+- **Transmissão:** penetração da larva pela pele em rios e lagos contaminados (caramujo *Biomphalaria sp.* é hospedeiro intermediário).
+- **Sintomas:** ascite (barriga d'água), diarreia, vômito.
+- **Profilaxia:** saneamento básico, educação sanitária.
+
+```{r}
+knitr::include_graphics("https://static.mundoeducacao.uol.com.br/mundoeducacao/conteudo_legenda/3c2952cbbf48c962853ad595538aacc0.jpg")
+```
+]
+.panel[.panel-name[Ascaridíase]
+- **Agente etiológico:** nematoide *Ascaris lumbricoides*.
+- **Transmissão:** ingestão de água e alimentos contaminados com ovos.
+- **Sintomas:** febre, vômito, diarreia, obstruções intestinais.
+- **Profilaxia:** saneamento básico, educação sanitária.
+
+```{r}
+knitr::include_graphics("http://www.sobiologia.com.br/figuras/Reinos2/ascaris.jpg")
+```
+]
+.panel[.panel-name[Ancilostomíase]
+- **Agente etiológico:** nematoide *Ancylostoma duodenale*.
+- **Transmissão:** penetração ativa da larva na pele.
+- **Sintomas:** cansaço, anemia, icterícia (amarelão) - doença do Jeca Tatu.
+- **Profilaxia:** saneamento básico, uso de calçados, educação sanitária.
+- *Ancylostoma sp.* também pode causar lesões cutâneas - larva migrans ou bicho geográfico.
+
+```{r out.width="50%"}
+knitr::include_graphics("https://segredosdomundo.r7.com/wp-content/uploads/2019/08/bicho-geografico-quais-sao-as-causa-sintomas-e-tratamento-7.jpg")
+```
+]
+.panel[.panel-name[Filariose]
+- **Agente etiológico:** nematoide *Wuchereria bancrofti*.
+- **Transmissão:** picada do mosquito do gênero Culex.
+- **Sintomas:** inchaço de pernas, braços, seios e bolsa escrotal - "elefantíase".
+- **Profilaxia:** combate ao vetor.
+
+```{r out.width="50%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/5/52/Elephantiasis.jpg")
+```
+]
+.panel[.panel-name[Enterobiose]
+- **Agente etiológico:** nematoide *Enterobius vermicularis*.
+- **Transmissão:** ingestão de água ou alimentos contaminados com ovos.
+- **Sintomas:** náusea, febre e prurido (coceira) anal.
+- **Profilaxia:** saneamento básico, educação sanitária, tratamento dos doentes.
+
+```{r out.width="50%"}
+knitr::include_graphics("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdrrKu4r3W-7XT6Rt1cOEgvUNAWSjl1WqlgQ&usqp=CAU")
+```
+]
+]
