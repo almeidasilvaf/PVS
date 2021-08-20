@@ -53,10 +53,6 @@ xaringanExtra::use_scribble()
 xaringanExtra::use_panelset()
 ```
 
-background-image: url(https://europa.com.br/blog/wp-content/uploads/2020/05/IMG_1498.jpg)
-background-size: 35%
-background-position: 95% 50%
-
 ## Polaridade das moléculas
 
 <br />
@@ -67,6 +63,12 @@ Moléculas podem ser:
 - **apolares:** não interagem com água, pois não conseguem formar ligações de hidrogênio
 
 Moléculas com cadeias carbônicas longas são apolares. Quanto mais carbonos, mais apolar.
+]
+
+.pull-right-1[
+```{r fig.align='right', out.width='80%'}
+knitr::include_graphics("https://europa.com.br/blog/wp-content/uploads/2020/05/IMG_1498.jpg")
+```
 ]
 
 ---
