@@ -1,0 +1,237 @@
+---
+title: |
+  Fisiologia Humana: <br />
+  excreção e reprodução
+author: "Fabrício de Almeida Silva"
+institute: "PVS - Fundação CECIERJ"
+date: "17 de setembro de 2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["default", "assets/venanciolab-fonts.css", "assets/venanciolab.css"]
+    self_contained: false
+    seal: true
+    nature:
+      ratio: "18:10"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "https://platform.twitter.com/widgets.js"
+      navigation:
+        scroll: false
+---
+
+<style>
+.title-slide {
+  background-image: url(https://dr282zn36sxxg.cloudfront.net/datastreams/f-d%3A6e51d616eb8a97ab9e86f395b078b125d0fd7fc89ddc7e8786dde205%2BIMAGE_TINY%2BIMAGE_TINY.1);
+  background-position: 96% 50%;
+  background-size: 45%
+}
+</style>
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE, warning = FALSE, message = FALSE,
+  fig.width = 7, fig.height = 2.5, 
+  fig.align='center', dpi = 300
+)
+options(htmltools.dir.version = TRUE)
+```
+
+```{r xaringan-fit-screen, echo=FALSE}
+xaringanExtra::use_fit_screen()
+```
+
+```{r xaringan-tile-view, echo=FALSE}
+xaringanExtra::use_tile_view()
+```
+
+```{r xaringan-scribble, echo=FALSE}
+xaringanExtra::use_scribble()
+```
+
+```{r xaringan-panelset, echo=FALSE}
+xaringanExtra::use_panelset()
+```
+
+---
+
+background-image: url(figs/aulas_13_14/fig1.png)
+background-position: 95% 50%
+
+## O que são excretas?
+
+<br />
+
+.pull-left[
+Aminoácidos têm .bgb[grupamentos amino].
+
+Em solução aquosa, $NH_2$ reage com água, formando amônia.
+
+Amônia é um composto muito tóxico.
+]
+
+---
+
+background-image: url(https://smart.servier.com/wp-content/uploads/2016/10/App_urinaire_femme-399x680.png)
+background-position: 93% 50%
+background-size: 30%
+
+## Sistema excretor
+
+<br />
+.pull-left-2[
+**Função:** Eliminação de resíduos nitrogenados da digestão (compostos com $-NH_2$).
+
+**Órgãos:**
+
+- Rins
+- Bexiga
+- Aparelho excretor (pênis / vagina)
+]
+
+---
+
+background-image: url(https://smart.servier.com/wp-content/uploads/2016/10/nephron_03.png)
+background-position: 95% 50%
+
+## O néfron: filtragem do sangue
+
+.pull-left[
+.bgb[Cápsula de Bowman:] <br />
+Filtragem glomerular, retendo **proteínas e lipídeos** no sangue.
+
+<br />
+.bgb[Túbulo contorcido proximal e alça néfrica:] <br />
+Reabsorção tubular &rarr; água, glicose, aminoácidos, íons ( $Cl^-, HCO_3^-, K^+, Na^+$) e tudo o que for "útil" retorna ao sangue.
+
+<br />
+.bgb[Túbulo contorcido distal e duto coletor:] <br />
+Reabsorção de água e secreção de hormônio (ADH).
+
+- ADH: hormônio antidiurético - controla a reabsorção de água de acordo com a necessidade.
+
+]
+
+---
+
+class: inverse, center, middle
+
+# Reprodução
+
+---
+
+background-image: url(https://static.biologianet.com/conteudo/images/2019/03/gametogenese.jpg)
+background-position: 95% 50%
+
+## Formação de gametas
+
+.pull-left-1[
+
+.bgb[Ovogênese:] <br />
+Formação de ovócitos (ou óvulos)
+
+<br />
+.bgb[Espermatogênese:] <br />
+Formação de espermatozoides.
+
+<br />
+De acordo com o número de cópias de cada cromossomo, céluas podem ser:
+1. .bgp[Somáticas:] 2 cópias (2n)
+2. .bgp[Germinativas:] 1 cópia (n)
+
+Como se forma uma célula somática?
+**n + n &rarr; 2n**
+
+]
+
+---
+
+background-image: url(figs/aulas_13_14/fig2.png)
+background-position: 95% 60%
+
+## Sistema reprodutor masculino
+
+.pull-left[
+.bgb[Próstata:] produz substância alcalina - mobilidade dos espermatozoides e neutralização da uretra.
+
+<br />
+.bgb[Vesícula seminal:] secreção rica em frutose - energia para espermatozoides.
+
+<br />
+.bgb[Glândula bulbouretral:] secreção viscosa que reveste a uretra antes da ejaculação.
+
+<br />
+.bgb[Uretra:] passagem para o sêmen.
+
+<br />
+.bgb[Testículos:] produção de espermatozoides e testosterona.
+
+]
+
+---
+
+background-image: url(figs/aulas_13_14/fig3.png)
+background-position: 95% 60%
+background-size: 45%
+
+## Regulação hormonal do sistema reprodutor masculino
+
+.pull-left[
+2 hormônios produzidos pela .bgr[hipófise] ativam a puberdade:
+
+- .bgb[hormônio luteinizante (LH):] produção de testosterona.
+
+- .bgb[hormônio folículo estimulante (FSH):] produção de espermatozoides.
+
+]
+
+---
+
+background-image: url(figs/aulas_13_14/fig4.png)
+background-position: 95% 50%
+background-size: 50%
+
+## Sistema reprodutor feminino
+
+.pull-left[
+.bgb[Ovário:] produção dos ovócitos e de hormônios femininos (progesterona e estrogênio)
+
+<br />
+.bgb[Camadas uterinas:]
+- **Endométrio:** camada mais externa, capaz de se desprender, regenerar e acolher o embrião.
+- **Miométrio:** fibras musculares - contrações durante a menstruação e o parto.
+- **Perimétrio:** camada mais externa.
+
+.bgb[Tubas uterinas:] levam o óvulo ao local da fecundação (parte superior das tubas).
+
+.bgb[Vagina:] Recebe e se adapta ao pênis durante o coito.
+]
+
+---
+
+background-image: url(https://static.mundoeducacao.uol.com.br/mundoeducacao/2020/02/ciclo-menstrual.jpg)
+background-size: contain
+
+## O ciclo menstrual
+
+---
+
+## Regulação hormonal do sistema reprodutor feminino
+
+<br />
+.bgb[Hormônio folículo estimulante (FSH):] liberado pela hipófise, responsável por estimular o amadurecimento do folículo ovariano.
+
+.bgb[Hormônio luteinizante:] liberado pela hipófise, responsável pela ovulação e desenvolvimento do corpo lúteo.
+
+.bgb[Estrogênio:] produzido pelo folículo ovariano, responsável pelo desenvolvimento do endométrio e por características sexuais secundárias femininas.
+
+.bgb[Progesterona:] produzido pelo folículo ovariano, responsável pelo espessamento do endométrio e pela sua manutenção após a ovulação.
+
+---
+
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/MenstrualCycle2_pt.svg/1200px-MenstrualCycle2_pt.svg.png)
+background-size: contain
+
+

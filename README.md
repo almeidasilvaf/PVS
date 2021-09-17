@@ -22,3 +22,6 @@ https://almeidasilvaf.github.io/PVS/aulas_09_10.html
 
 - Aula 6:
 https://almeidasilvaf.github.io/PVS/aulas_11_12.html
+
+- Aula 7:
+https://almeidasilvaf.github.io/PVS/aulas_13_14.html
