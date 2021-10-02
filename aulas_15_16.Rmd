@@ -4,7 +4,7 @@ title: |
   ácidos nucleicos e lógica molecular da vida
 author: "Fabrício de Almeida Silva"
 institute: "PVS - Fundação CECIERJ"
-date: "01 de outubro de 2021"
+date: "02 de outubro de 2021"
 output:
   xaringan::moon_reader:
     lib_dir: libs
