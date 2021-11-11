@@ -3,7 +3,7 @@ title: |
   Noções de imunologia e citogenética
 author: "Fabrício de Almeida Silva"
 institute: "PVS - Fundação CECIERJ"
-date: "16 de outubro de 2021"
+date: "13 de novembro de 2021"
 output:
   xaringan::moon_reader:
     lib_dir: libs
