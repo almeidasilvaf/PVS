@@ -1,0 +1,317 @@
+---
+title: |
+  Noções de imunologia e citogenética
+author: "Fabrício de Almeida Silva"
+institute: "PVS - Fundação CECIERJ"
+date: "16 de outubro de 2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["default", "assets/venanciolab-fonts.css", "assets/venanciolab.css"]
+    self_contained: false
+    seal: true
+    nature:
+      ratio: "18:10"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "https://platform.twitter.com/widgets.js"
+      navigation:
+        scroll: false
+---
+
+<style>
+.title-slide {
+  background-image: url(https://publons.com/media/thumbs/journal/logos/83a6ef2f-ec13-4616-825d-df8d6a922ea2.png.200x200_q95_detail_letterbox_upscale.png);
+  background-position: 99% 50%;
+  background-size: 35%
+}
+</style>
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE, warning = FALSE, message = FALSE,
+  fig.width = 7, fig.height = 2.5, 
+  fig.align='center', dpi = 300
+)
+options(htmltools.dir.version = TRUE)
+```
+
+```{r xaringan-fit-screen, echo=FALSE}
+xaringanExtra::use_fit_screen()
+```
+
+```{r xaringan-tile-view, echo=FALSE}
+xaringanExtra::use_tile_view()
+```
+
+```{r xaringan-scribble, echo=FALSE}
+xaringanExtra::use_scribble()
+```
+
+```{r xaringan-panelset, echo=FALSE}
+xaringanExtra::use_panelset()
+```
+
+---
+
+## Células-tronco
+
+<br />
+
+.pull-left-1[
+Células-tronco são .bgp[totipotentes]: capazes de se diferenciar em qualquer tipo de célula.
+
+O destino de uma célula é determinado por sinais químicos e expressão de genes específicos.
+
+]
+
+.pull-right-2[
+```{r, out.width='90%'}
+knitr::include_graphics("http://s2.glbimg.com/q-UxLVFkGSqNvmf5zCsVxlS6UyQ=/0x0:971x722/620x461/s.glbimg.com/po/ek/f/original/2013/09/11/celulas-tronco_clonagem_e_tecnologia_do_dna_recombinante_2.jpg")
+```
+]
+
+---
+
+background-image: url(figs/aulas_17_18/imunidade_resumo.png)
+
+## O sistema imunológico
+
+---
+
+background-image: url(https://medpri.me/upload/editor/ilustra%207.png)
+background-size: contain
+
+---
+
+background-image: url(https://lh3.googleusercontent.com/proxy/nUc6R0SztE9xW0TfqXHcN97syXSHRptd5g3mX67tCJxBdk0fo8591by_hFFdo5wEYyONKqac-Qo33gYo1piGGcGSfbMpLuVKjTUTpGOd2FCxaodbrewTVhQLzsSRxRiu0Zi18F79iwEPW9qP8ckokHlbMMWsRhd-7wA)
+background-size: 33%
+background-position: 10% 90%
+
+## Da imunindade inata à imunidade adquirida
+
+.pull-left[
+.bgb[Imunidade inata:]
+
+Células fagocíticas (macrófagos, células dendríticas) fagocitam patógeno.
+
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&darr;
+
+Células apresentadoras de antígenos (células dendríticas) apresentam antígenos do patógeno a linfócitos T
+
+]
+
+.pull-right[
+.bgp[Imunidade adquirida:]
+
+Linfócitos T se multiplicam (multiplicação clonal):
+
+- alguns linfócitos T atacam o patógeno diretamente
+
+- outros linfócitos T ativam linfócitos B (produtores de anticorpos)
+
+Em caso de reinfecção, a célula estará "treinada", pois já tem anticorpos contra aquele patógeno e já aprendeu a reconhecer o patógeno específico.
+
+
+Esse é o mecanismo de ação das .bgr[vacinas]: estimular a produção de anticorpos contra um patógeno e ensiná-lo a reconhecer o patógeno caso ele entre no organismo. 
+]
+
+---
+
+class: inverse, center, middle
+
+# Princípios de citogenética
+
+---
+
+## Conceitos
+
+
+- .bgb[Cromossomos:] Estruturas formadas por moléculas de DNA condensadas.
+
+- .bgb[Ploidia:] Número de cópias de cada cromossomo de um indivíduo. Células podem ser:
+ - haploides: 1 cópia de cada cromossomo (.bgp[células sexuais])
+ - diploides: 2 cópias de cada cromossomo
+ - tetraploides: 4 cópias de cada cromossomo
+ - hexaploides: 6 cópias de cada cromossomo
+ - e assim sucessivamente...
+ - poliploides: termo genérico para descrever células com 4 ou mais cópias.
+
+- .bgb[Cariótipo:] Conjunto total de cromossomos de um indivíduo.
+ - Humanos: 
+  1. Células somáticas (do corpo): diploides, 23 cromossomos &rarr; 2N = 46
+  2. Células germinativas (sexuais): haploides, 23 cromossomos &rarr; N = 23
+
+
+---
+
+## O par 23 representa os cromossomos sexuais
+
+.pull-left-1[
+Cromossomos podem ser:
+
+- Autossomos: cromossomos 1-22
+- Alossomos (sexuais): 23
+
+Os alossomos determinam o sexo do indivíduo:
+- XX: mulher
+- XY: homem
+]
+
+.pull-right-2[
+
+```{r, out.width='90%'}
+knitr::include_graphics("https://lh3.googleusercontent.com/proxy/B8S_eyLcr8Fn782NJ4oL5UGojyxPut8LjNQVGaFw6DiCwO80DoABeTkPeYJNoXJ3m25_tQ32ZFiIfZMR7JqCdGdzocywZX5pXe7BGCQ")
+```
+]
+
+---
+
+## O par 23 representa os cromossomos sexuais
+
+.pull-left-1[
+Cromossomos podem ser:
+
+- Autossomos: cromossomos 1-22
+- Alossomos (sexuais): 23
+
+Os alossomos determinam o sexo do indivíduo:
+- XX: mulher
+- XY: homem
+]
+
+.pull-right-2[
+
+```{r, out.width='90%'}
+knitr::include_graphics("https://www.coladaweb.com/wp-content/uploads/2014/12/20180507-cariotipo.jpg")
+```
+]
+
+---
+
+## Aneuploidias: alterações númericas de um cromossomo
+
+- Indivíduo saudável: 46, XX/XY
+
+.pull-left[
+```{r, out.width='90%'}
+knitr::include_graphics("https://www.coladaweb.com/wp-content/uploads/2014/12/20180507-cariotipo.jpg")
+```
+]
+
+.pull-right[
+```{r, out.width='50%'}
+knitr::include_graphics("https://images.unsplash.com/photo-1600273759837-a4d4abb62142?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bXVsaGVyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80")
+```
+
+]
+
+---
+
+## Aneuploidias: alterações númericas de um cromossomo
+
+- Síndrome de Down: 47, 21+, XY
+
+.pull-left[
+```{r, out.width='90%'}
+knitr::include_graphics("http://3.bp.blogspot.com/-OfEuX8FsSJ0/VQVRkXFlQcI/AAAAAAAAMIc/m6Ds7izr1XE/s1600/21_trisomy_-_Down_syndrome.png")
+```
+]
+
+.pull-right[
+```{r, out.width='50%'}
+knitr::include_graphics("https://images.unsplash.com/photo-1622861429852-43d53e19a66b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=386&q=80")
+```
+
+]
+
+---
+
+## Aneuploidias: alterações númericas de um cromossomo
+
+- Síndrome de Edwards: 47, 18+, XX
+
+.pull-left[
+```{r, out.width='90%'}
+knitr::include_graphics("https://lh3.googleusercontent.com/proxy/siHolTR7WLt_IY6rh6xfYahfM1usjDamed6CFfwKYDcUeLJ7yXXhY2DA7Qdwn6C0e6IRghYXsjPhlT1KB_V5O-LP8C5WjHz3NCV_oqzY6bIaE2A")
+```
+]
+
+.pull-right[
+```{r, out.width='90%'}
+knitr::include_graphics("https://makingchromosomescount.co.uk/wp-content/uploads/2021/03/qloj5mla-scaled.jpeg?v=1617044933")
+```
+
+.footnote[Fonte: Making Chromosomes Count]
+]
+
+---
+
+## Divisão celular: mitose e meiose
+
+.pull-left[
+.bgb[Mitose:] 
+- Divisão de células somáticas
+- 1 célula 2N &rarr; 2 células 2N
+- Ocorre para regenerar tecidos
+ - No nosso corpo, células estão morrendo o tempo todo.
+]
+
+.pull-right[
+.bgb[Meiose:]
+- Divisão de células germinativas (sexuais)
+- 1 célula 2N &rarr; 4 células N
+- Ocorre para formar células sexuais
+ - em .bgr[homens], a meiose irá gerar os .bgr[espermatozoides]; em .bgp[mulheres], os .bgp[ovócitos].
+
+]
+
+---
+
+## Divisão celular: mitose e meiose
+
+```{r}
+knitr::include_graphics("https://d3q93wnyp4lkf8.cloudfront.net/revista/post_images/20398/98bd3304c2f7bf94b1ed65929fc21649dcdda164.gif?1561552113")
+```
+
+---
+
+background-image: url(https://www.todoestudo.com.br/wp-content/uploads/2020/07/mitose-e-meiose-4.png)
+background-position: 95% 75%
+background-size: 45%
+
+## Mitose
+
+.pull-left[
+```{r out.width='90%'}
+knitr::include_graphics("http://2.bp.blogspot.com/-IkX5pCkYUOw/UL4g26iMt3I/AAAAAAAAG50/olEy3E2OGWQ/s280/1.gif")
+```
+]
+
+---
+
+background-image: url(https://s4.static.brasilescola.uol.com.br/be/2020/03/meiose.jpg)
+background-position: 95% 50%
+background-size: 60%
+
+## Meiose
+
+.pull-left-1[
+```{r}
+knitr::include_graphics("https://www.sciencesetavenir.fr/assets/referentiel/file/14983818.gif")
+```
+]
+
+---
+
+## O *crossing-over* e a diversidade genética
+
+<br />
+```{r out.width='40%'}
+knitr::include_graphics("http://4.bp.blogspot.com/-La4KDod4BNY/T-pr5bp4rJI/AAAAAAAAAHc/och5Jm4UOiU/s1600/Crossing+over(2).gif")
+```
+
+
+

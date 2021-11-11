@@ -36,3 +36,7 @@ Esse repositório contém materiais referentes à disciplina de Biologia do PVS,
 - Aula 8: **Introdução à Genética Molecular: ácidos nucleicos e lógica molecular da vida**
     
     https://almeidasilvaf.github.io/PVS/aulas_15_16.html
+
+- Aula 9: **Noções de imunologia e citogenética**
+
+    https://almeidasilvaf.github.io/PVS/aulas_17_18.html
